@@ -13,19 +13,19 @@ def getImage():
 		if data[:4] == "SEND":
 			print data[5:]
 			fp = open(data[5:], "wb+")
-		elif data[:6] == "FINISH":
+		elif data[:6] == "DONE":
 			fp.close()
 			received = 0
 		elif data[:3] == "END":
-			print "END CONNECTION"
+			print "Selesai"
 			break
 		else:
 			fp.write(data)
 			received += len(data)
-			print "Received " + str(received)
+			print "Menerima " + str(received)
 while True:
 	data, addr = sock.recvfrom(1024)
 	if str(data) == "START":
-		print "Start Receiving Images"
+		print "Manerima data"
 		getImage()
 		break
